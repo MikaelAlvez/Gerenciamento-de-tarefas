@@ -6,8 +6,6 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 
 export default function Login() {
-
-
   return (
     <div className={styles.background}>
       <div className={styles.loginContainer}>
