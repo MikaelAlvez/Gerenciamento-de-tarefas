@@ -9,13 +9,13 @@ export default function ListTasks() {
   return (
     <div className={styles.container}>
       {tasks.map((task, index) => (
-      <TaskCards
-      key={index}
-      titleTask={task.titleTask}
-      description={task.description}
-      status={task.status}
-      date={task.date}
-      />
+        <TaskCards
+          key={index}
+          titleTask={task.titleTask}
+          description={task.description}
+          status={task.status as "Concluído" | "Pendente" | "Em progresso"}
+          date={task.date}
+        />
       ))}
     </div>
   );

@@ -1,11 +1,17 @@
 import React from 'react';
 import { MdEdit, MdDelete } from "react-icons/md";
-
 import styles from './TaskCards.module.css';
 
-export default function TaskCards({ titleTask, description, status, date }) {
+interface TaskCardsProps {
+  titleTask: string;
+  description: string;
+  status: 'Concluído' | 'Pendente' | 'Em progresso';
+  date: string;
+}
 
-  const getStatusClass = (status) => {
+export default function TaskCards({ titleTask, description, status, date }: TaskCardsProps) {
+
+  const getStatusClass = (status: string) => {
     switch (status) {
       case 'Concluído':
         return styles.statusConfirmado;
