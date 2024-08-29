@@ -1,41 +1,153 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.logout {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.logout button {
+  display: flex;
+  align-items: center;
+  border: none;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  width: 170px;
+  color: white;
+  cursor: pointer;
+}
+
+.logout svg {
+  font-size: 30px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.layout{
+  margin-bottom: 70px;
+}
+
+.source {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.taskCards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 10px 0;
+}
+
+@media (max-width: 810px) {
   .logout {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    font-size: 18px;
+    top: 15px;
+    right: 15px;
   }
-  
+
+  .logout button {
+    display: none;
+  }
+
+  .logout svg {
+    font-size: 28px;
+  }
+
   .source {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    width: 90%;
   }
-  
+
   .taskCards {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .logout {
+    top: 10px;
+    right: 10px;
+  }
+
+  .logout button {
+    display: none;
+  }
+
+  .logout svg {
+    font-size: 24px;
+  }
+
+  .source {
+    width: 95%;
+  }
+
+  .taskCards {
     margin: 10px 0;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .logout {
+    top: 5px;
+    right: 5px;
+  }
+
+  .logout button {
+    display: none;
+  }
+
+  .logout svg {
+    font-size: 20px;
+  }
+
+  .source {
+    width: 100%;
+  }
+
+  .taskCards {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .logout {
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+  }
+
+  .logout button {
+    display: none;
+  }
+
+  .logout svg {
+    font-size: 18px;
+  }
+
+  .source {
+    width: 100%;
+  }
+
+  .taskCards {
+    margin: 5px 0;
+  }
+}

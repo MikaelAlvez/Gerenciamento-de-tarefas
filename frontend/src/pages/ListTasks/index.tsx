@@ -10,8 +10,12 @@ import Link from 'next/link';
 export default function ListTasks() {
   const router = useRouter();
 
-  const handleLoginRedirect = () => {
+  const handleNewTaskRedirect = () => {
     router.push('/NewTask');
+  };
+
+  const handleHomeRedirect = () => {
+    router.push('/');
   };
 
   const tasks = [
@@ -20,17 +24,26 @@ export default function ListTasks() {
     {titleTask: 'Sprint', description: 'Mostrar desenvolvimento da HomePage', status: 'Concluído', date: '25 de agosto, 2024'},
     {titleTask: 'Prova', description: 'Prova Programação II', status: 'Em progresso', date: '01 de setembro, 2024'},
     {titleTask: 'Atividade', description: 'Atividade Cálculo III', status: 'Pendente', date: '28 de agosto, 2024'},
-  ];
+    {titleTask: 'Sprint', description: 'Mostrar desenvolvimento da HomePage', status: 'Concluído', date: '25 de agosto, 2024'},
+    {titleTask: 'Prova', description: 'Prova Programação II', status: 'Em progresso', date: '01 de setembro, 2024'},
+    {titleTask: 'Atividade', description: 'Atividade Cálculo III', status: 'Pendente', date: '28 de agosto, 2024'},
+    {titleTask: 'Sprint', description: 'Mostrar desenvolvimento da HomePage', status: 'Concluído', date: '25 de agosto, 2024'},
+    {titleTask: 'Prova', description: 'Prova Programação II', status: 'Em progresso', date: '01 de setembro, 2024'},
+    {titleTask: 'Atividade', description: 'Atividade Cálculo III', status: 'Pendente', date: '28 de agosto, 2024'},
+    {titleTask: 'Sprint', description: 'Mostrar desenvolvimento da HomePage', status: 'Concluído', date: '25 de agosto, 2024'},
+  ]
 
   return (
     <div className={styles.container}>
-      <div className={styles.logout}>
-        <Link href={'/'}>
-          Logout
-          <ImExit/>
-        </Link>
+      <div className={styles.layout}>
+        <div className={styles.logout}>
+          <Button onClick={handleHomeRedirect}>
+            Logout
+            <ImExit/>
+          </Button>
+        </div>
       </div>
-      <div className={styles.source}>
+        <div className={styles.source}>
         <Source/>
       </div>
       {tasks.map((task, index) => (
@@ -42,10 +55,10 @@ export default function ListTasks() {
           date={task.date}
         />
       ))}
-        <Button onClick={handleLoginRedirect}> 
+        <Button onClick={handleNewTaskRedirect}> 
           <IoMdAddCircle />
           Nova tarefa
-        </Button>   
+        </Button>  
     </div>
   );
 }
