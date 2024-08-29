@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { IoIosSave } from "react-icons/io";
 import { GiReturnArrow } from "react-icons/gi";
 
-export default function Login() {
+export default function RegisterUsers() {
   const router = useRouter();
   const handleLoginRedirect = () => {
     router.push('/');

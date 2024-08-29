@@ -69,6 +69,14 @@
   text-decoration: none;
 }
 
+.button {
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
+
+
 .textConta {
   font-family: 'poppins-bold', sans-serif;
   font-size: 16px;
@@ -100,6 +108,14 @@
   color: #191970;
   cursor: pointer;
 }
+
+.checkbox input[type="checkbox"] {
+  width: 12px;
+  height: 12px; 
+  transform: scale(1.5);
+  margin-right: 5px;
+}
+
 
 .loginContainer button {
   margin: 50px auto;

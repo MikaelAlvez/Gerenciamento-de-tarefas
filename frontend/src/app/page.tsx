@@ -8,7 +8,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useRouter } from 'next/navigation'
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   
   const handleLoginRedirect = () => {
@@ -43,7 +43,9 @@ export default function page() {
             <label className={styles.textBlue}>Esqueceu a senha?</label>
           </div>
 
-          <Button onClick={handleLoginRedirect}>Log in</Button>
+          <div className={styles.button}>
+            <Button onClick={handleLoginRedirect}>Log in</Button>
+          </div>
 
           <h4 className={styles.textConta}>Não tem uma conta? <Link className={styles.textBlue} href={"/RegisterUsers"}>Inscreva-se</Link></h4>
           <h4 className={styles.textConta}>Logar com</h4>
