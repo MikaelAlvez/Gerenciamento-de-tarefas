@@ -46,15 +46,24 @@ export default function ListTasks() {
         <div className={styles.source}>
         <Source/>
       </div>
-      {tasks.map((task, index) => (
-        <TaskCards
-          key={index}
-          titleTask={task.titleTask}
-          description={task.description}
-          status={task.status as "Concluído" | "Pendente" | "Em progresso"}
-          date={task.date}
-        />
-      ))}
+      <div className={styles.list}>
+        <div className={styles.spans}>
+            <span>Título</span>
+            <span>Descrição</span>
+            <span>Status</span>
+            <span>Data agendada</span>
+            <span></span>
+          </div>
+        {tasks.map((task, index) => (
+          <TaskCards
+            key={index}
+            titleTask={task.titleTask}
+            description={task.description}
+            status={task.status as "Concluído" | "Pendente" | "Em progresso"}
+            date={task.date}
+          />
+        ))}
+      </div>
         <Button onClick={handleNewTaskRedirect}> 
           <IoMdAddCircle />
           Nova tarefa
