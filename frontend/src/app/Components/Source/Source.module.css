@@ -1,40 +1,127 @@
 .buscarContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background-color: #f4f4f4;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  width: 25%;
+  height: 3vh;
+  background-color: #191970;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input {
+  flex: 1;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #191970;
+  color: #ffffff;
+  border: none; 
+  outline: none;
+}
+
+.button {
+  background-color: #191970;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  color: #ffffff;
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+
+.icon:hover {
+  transform: scale(1.25);
+}
+
+@media (max-width: 810px){
+  .buscarContainer {
+    width: 50%;
+    padding: 8px;
+    gap: 8px;
+    height: auto;
   }
-  
+
   .input {
-    flex: 0.5em;
-    padding: 10px;
-    font-size: 20px;
-    background-color: #f4f4f4;
-    border: none; 
-    outline: none;
+    font-size: 18px;
+    padding: 8px;
   }
-  
+
   .button {
-    background-color: #00B3F3;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s;
+    padding: 8px;
   }
-  
-  .button:hover {
-    background-color: #0070f3;
-  }
-  
+
   .icon {
-    color: #ffffff;
-    font-size: 20px;
+    font-size: 18px;
   }
-  
+}
+
+@media (max-width: 768px) {
+  .buscarContainer {
+    width: 75%;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .input {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  .button {
+    padding: 8px;
+  }
+
+  .icon {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .buscarContainer {
+    width: 75%;
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .input {
+    font-size: 16px;
+    padding: 6px;
+  }
+
+  .button {
+    padding: 6px;
+  }
+
+  .icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .buscarContainer {
+    width: 70%;
+    padding: 5px;
+    gap: 5px;
+  }
+
+  .input {
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  .button {
+    padding: 5px;
+  }
+
+  .icon {
+    font-size: 14px;
+  }
+}
