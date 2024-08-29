@@ -45,7 +45,7 @@ export default function page() {
 
           <Button onClick={handleLoginRedirect}>Log in</Button>
 
-          <h4 className={styles.textConta}>Não tem uma conta? <Link className={styles.textBlue} href={'/RegisterUsers'}>Inscreva-se</Link></h4>
+          <h4 className={styles.textConta}>Não tem uma conta? <Link className={styles.textBlue} href={"/RegisterUsers"}>Inscreva-se</Link></h4>
           <h4 className={styles.textConta}>Logar com</h4>
           <div className={styles.redes}>
             <FcGoogle size={'3em'}/>
