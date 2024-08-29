@@ -8,8 +8,8 @@ import { ImExit } from "react-icons/im";
 export default function ListTasks() {
   const tasks = [
     {titleTask: 'Prova', description: 'Prova Programação II', status: 'Em progresso', date: '01 de setembro, 2024'},
-    {titleTask: 'Prova', description: 'Prova Programação II', status: 'Em progresso', date: '01 de setembro, 2024'},
-    {titleTask: 'Prova', description: 'Prova Programação II', status: 'Em progresso', date: '01 de setembro, 2024'},
+    {titleTask: 'Atividade', description: 'Atividade Cálculo III', status: 'Pendente', date: '28 de agosto, 2024'},
+    {titleTask: 'Sprint', description: 'Mostrar desenvolvimento da HomePage', status: 'Concluído', date: '25 de agosto, 2024'},
   ];
 
   return (

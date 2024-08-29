@@ -25,21 +25,21 @@
     text-align: center;
   }
   
-  .statusConfirmado {
+  .statusConcluido {
     background-color: #005F01;
     color: white;
     border-radius: 20px;
     padding: 5px 10px;
   }
   
-  .statusCancelado {
+  .statusPendente {
     background-color: #DC143C;
     color: white;
     border-radius: 20px;
     padding: 5px 10px;
   }
   
-  .statusPendente {
+  .statusProgresso {
     background-color: #ffdd00;
     color: black;
     border-radius: 20px;
@@ -51,8 +51,8 @@
     gap: 10px;
   }
   
-  .statusConfirmado,
-  .statusCancelado,
+  .statusConcluido,
+  .statusProgresso,
   .statusPendente {
     display: inline-block;
     border-radius: 20px;
@@ -65,34 +65,21 @@
     text-overflow: ellipsis;
   }
   
-  .actionButtonConfirmar,
-  .actionButtonCancelar,
-  .actionButtonReagendar {
-    background: none;
+  .actionButtonEdit, .actionButtonDelete {
+    background-color: transparent;
     border: none;
     cursor: pointer;
-    width: 100%;
-    font-size: 0.875rem;
-    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+    font-size: 24px;
   }
   
-  .actionButtonConfirmar {
-    color: #005F01;
+  .actionButtonEdit:hover, .actionButtonDelete:hover {
+    transform: scale(1.50);
   }
   
-  .actionButtonCancelar {
-    color: #DC143C;
-  }
-  
-  .actionButtonReagendar {
-    color: #ffdd00;
-  }
-  
-  .actionButtonConfirmar:hover,
-  .actionButtonCancelar:hover,
-  .actionButtonReagendar:hover {
-    color: #005bb5;
-  }
   
   @media (max-width: 768px) {
     .listaContainer {

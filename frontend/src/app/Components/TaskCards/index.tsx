@@ -14,11 +14,11 @@ export default function TaskCards({ titleTask, description, status, date }: Task
   const getStatusClass = (status: string) => {
     switch (status) {
       case 'Concluído':
-        return styles.statusConfirmado;
+        return styles.statusConcluido;
       case 'Pendente':
-        return styles.statusCancelado;
-      case 'Em progresso':
         return styles.statusPendente;
+      case 'Em progresso':
+        return styles.statusProgresso;
       default:
         return '';
     }
@@ -33,8 +33,8 @@ export default function TaskCards({ titleTask, description, status, date }: Task
         <span className={styles.field}>{date}</span>
       </div>
       <div className={styles.actions}>
-        <button className={styles.actionButtonConfirmar}><MdEdit /></button>
-        <button className={styles.actionButtonCancelar}><MdDelete /></button>
+        <button className={styles.actionButtonEdit}><MdEdit /></button>
+        <button className={styles.actionButtonDelete}><MdDelete /></button>
       </div>
     </div>
   );
