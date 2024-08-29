@@ -1,11 +1,20 @@
+'use client'
+
 import React from 'react';
 import styles from './page.module.css';
 import Button from '@/app/Components/Button';
 import Link from 'next/link';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+import { useRouter } from 'next/navigation'
 
-export default function Login() {
+export default function page() {
+  const router = useRouter();
+  
+  const handleLoginRedirect = () => {
+    router.push('/ListTasks');
+  };
+
   return (
     <div className={styles.background}>
       <div className={styles.loginContainer}>
@@ -34,7 +43,7 @@ export default function Login() {
             <label className={styles.textBlue}>Esqueceu a senha?</label>
           </div>
 
-          <Button>Log in</Button>
+          <Button onClick={handleLoginRedirect}>Log in</Button>
 
           <h4 className={styles.textConta}>Não tem uma conta? <Link className={styles.textBlue} href={'/RegisterUsers'}>Inscreva-se</Link></h4>
           <h4 className={styles.textConta}>Logar com</h4>
