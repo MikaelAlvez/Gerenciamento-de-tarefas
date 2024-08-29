@@ -4,8 +4,15 @@ import Source from '@/app/Components/Source';
 import Button from '@/app/Components/Button';
 import { IoMdAddCircle } from "react-icons/io";
 import { ImExit } from "react-icons/im";
+import { useRouter } from 'next/navigation';
 
 export default function ListTasks() {
+  const router = useRouter();
+
+  const handleLoginRedirect = () => {
+    router.push('/NewTask');
+  };
+
   const tasks = [
     {titleTask: 'Prova', description: 'Prova Programação II', status: 'Em progresso', date: '01 de setembro, 2024'},
     {titleTask: 'Atividade', description: 'Atividade Cálculo III', status: 'Pendente', date: '28 de agosto, 2024'},
@@ -28,7 +35,7 @@ export default function ListTasks() {
           date={task.date}
         />
       ))}
-      <Button> 
+      <Button onClick={handleLoginRedirect}> 
         <IoMdAddCircle />
         Nova tarefa
       </Button>
