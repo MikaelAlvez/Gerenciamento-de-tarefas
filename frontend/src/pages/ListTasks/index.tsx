@@ -8,9 +8,16 @@ import { IoMdAddCircle } from "react-icons/io";
 import { ImExit } from "react-icons/im";
 import { useRouter } from 'next/navigation';
 
+interface Task {
+  titleTask: string;
+  description: string;
+  status: 'Concluído' | 'Pendente' | 'Em progresso';
+  date: string;
+}
+
 export default function ListTasks() {
   const router = useRouter();
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   const handleNewTaskRedirect = () => {
     router.push('/NewTask');
@@ -22,7 +29,7 @@ export default function ListTasks() {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/tasks');
+      const response = await axios.get<Task[]>('http://localhost:3000/api/tasks');
       setTasks(response.data);
     } catch (error) {
       console.error('Erro ao buscar tarefas:', error);
@@ -65,14 +72,14 @@ export default function ListTasks() {
                 key={index}
                 titleTask={task.titleTask}
                 description={task.description}
-                status={task.status as "Concluído" | "Pendente" | "Em progresso"}
+                status={task.status}
                 date={task.date}
               />
             ))}
           </>
         )}
       </div>
-      <Button className={styles.button} onClick={handleNewTaskRedirect}>
+      <Button onClick={handleNewTaskRedirect}>
         <IoMdAddCircle />
         Nova tarefa
       </Button>
