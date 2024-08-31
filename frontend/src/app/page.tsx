@@ -13,7 +13,7 @@ export default function Page() {
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     try {
@@ -75,7 +75,7 @@ export default function Page() {
           </div>
 
           <div className={styles.button}>
-            <Button type="submit">Log in</Button>
+            <Button>Log in</Button>
           </div>
 
           <h4 className={styles.textConta}>Não tem uma conta? <Link className={styles.textBlue} href={"/RegisterUsers"}>Inscreva-se</Link></h4>
