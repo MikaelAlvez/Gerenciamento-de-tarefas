@@ -1,11 +1,15 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
+  min-height: 98vh;
+  position: relative;
+}
+
+.list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .logout {
@@ -35,7 +39,7 @@
   vertical-align: middle;
 }
 
-.layout{
+.layout {
   margin-bottom: 70px;
 }
 
@@ -50,19 +54,11 @@
   margin-bottom: 20px;
 }
 
-.list {
-  width: 100%;
-  max-width: 1194px;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .spans {
   display: flex;
+  justify-content: space-between;
   font-weight: bold;
-  border-bottom: 2px solid #ddd;
+  margin-bottom: 10px;
 }
 
 .spans span {
@@ -77,6 +73,13 @@
   justify-content: center;
   width: 100%;
   margin: 10px 0;
+}
+
+.noTasks {
+  text-align: center;
+  color: #888;
+  font-size: 1.2em;
+  margin-top: 20px;
 }
 
 @media (max-width: 810px) {
