@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import styles from './RegisterUsers.module.css';
 import Button from '@/app/Components/Button';
 import { useRouter } from 'next/navigation';
@@ -14,6 +14,7 @@ export default function RegisterUsers() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const handleLoginRedirect = () => {
     router.push('/');
@@ -23,7 +24,9 @@ export default function RegisterUsers() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setErrorMessage("As senhas não coincidem.");
+      setModalMessage("As senhas não coincidem.");
+      setErrorMessage('');
+      setShowModal(true);
       return;
     }
 
@@ -35,17 +38,33 @@ export default function RegisterUsers() {
       });
 
       if (response.status === 201) {
+        setModalMessage("Usuário cadastrado com sucesso!");
+        setErrorMessage('');
         setShowModal(true);
       }
     } catch (error) {
-      setErrorMessage("Erro ao registrar. Por favor, tente novamente.");
+      if (axios.isAxiosError(error)) {
+        if (error.response && error.response.status === 409) {
+          setModalMessage("Usuário já existe.");
+          setErrorMessage('');
+          setShowModal(true);
+        } else {
+          setModalMessage("Erro ao registrar. Por favor, tente novamente.");
+        }
+        setErrorMessage('');
+        setShowModal(true);
+      } else {
+        setModalMessage("Erro desconhecido. Por favor, tente novamente.");
+        setErrorMessage('');
+        setShowModal(true);
+      }
       console.error(error);
     }
   };
 
   const closeModal = () => {
     setShowModal(false);
-    router.push('/');
+    router.push('/RegisterUsers');
   };
 
   return (
@@ -99,13 +118,13 @@ export default function RegisterUsers() {
                   />
                 </div>
                 <div className={styles.buttons}>
-                  <Button onClick={handleLoginRedirect}>
-                    <GiReturnArrow />
-                    Voltar
-                  </Button>
                   <Button>
                     <IoIosSave />
                     Salvar
+                  </Button>
+                  <Button onClick={handleLoginRedirect}>
+                    <GiReturnArrow />
+                    Voltar
                   </Button>
                 </div>
             </form>
@@ -114,10 +133,9 @@ export default function RegisterUsers() {
         {showModal && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
-              <h2>Usuário cadastrado com sucesso!</h2>
+              <h2>{modalMessage}</h2>
               <div className={styles.modalButtonContainer}>
-                <Button
-                  onClick={closeModal}>
+                <Button onClick={closeModal}>
                   <GiReturnArrow />
                   Voltar
                 </Button>

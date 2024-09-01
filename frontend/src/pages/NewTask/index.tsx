@@ -22,19 +22,31 @@ export default function NewTask() {
   const handleSave = async () => {
     try {
       console.log('Salvando tarefa...');
+      
+      // Obter o token de autenticação do localStorage
+      const token = localStorage.getItem('token'); // Certifique-se de que o token foi salvo no localStorage no momento do login
+      
+      if (!token) {
+        throw new Error('Usuário não autenticado');
+      }
+
       await axios.post('http://localhost:3000/api/tasks', {
         titleTask: title,
         date,
         observations,
         status: 'Pendente'
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`  // Incluindo o token no cabeçalho da requisição
+        }
       });
+
       router.push('/ListTasks');
     } catch (error) {
       console.error('Erro ao salvar a tarefa:', error);
     }
   };
   
-
   return (
     <div className={styles.cadastro}>
         <h1>Nova tarefa</h1>
