@@ -20,23 +20,23 @@ export default function RegisterUsers() {
     router.push('/');
   };
 
-  const handleRegister = async (e: { preventDefault: () => void; }) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     if (password !== confirmPassword) {
       setModalMessage("As senhas não coincidem.");
       setErrorMessage('');
       setShowModal(true);
       return;
     }
-
+  
     try {
       const response = await axios.post('http://localhost:3000/api/auth/register', {
         nome,
         email,
         password
       });
-
+  
       if (response.status === 201) {
         setModalMessage("Usuário cadastrado com sucesso!");
         setErrorMessage('');
@@ -44,12 +44,15 @@ export default function RegisterUsers() {
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        if (error.response && error.response.status === 409) {
-          setModalMessage("Usuário já existe.");
-          setErrorMessage('');
-          setShowModal(true);
+        if (error.response) {
+          // Checar a resposta do erro
+          if (error.response.status === 409) {
+            setModalMessage("Usuário já existe.");
+          } else {
+            setModalMessage("Erro ao registrar. Por favor, tente novamente.");
+          }
         } else {
-          setModalMessage("Erro ao registrar. Por favor, tente novamente.");
+          setModalMessage("Erro desconhecido. Por favor, tente novamente.");
         }
         setErrorMessage('');
         setShowModal(true);
@@ -61,6 +64,7 @@ export default function RegisterUsers() {
       console.error(error);
     }
   };
+  
 
   const closeModal = () => {
     setShowModal(false);

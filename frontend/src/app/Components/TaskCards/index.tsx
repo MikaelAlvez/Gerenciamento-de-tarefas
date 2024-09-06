@@ -130,7 +130,7 @@ export default function TaskCards({ title, description, status, date }: TaskCard
         <div className={styles.modal}>
           <div className={styles.modalContent}>
             <h2>Confirmar Exclusão</h2>
-            <p>Você realmente deseja remover a tarefa "{title}"?</p>
+            <p>Você realmente deseja remover a tarefa &quot;{title}&quot;?</p>
             <button onClick={handleDelete}>Excluir</button>
             <button onClick={closeDeleteModal}>Cancelar</button>
           </div>
