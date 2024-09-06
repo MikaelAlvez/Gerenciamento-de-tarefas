@@ -10,91 +10,109 @@ export default function NewTask() {
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
-  const [observations, setObservations] = useState('');
+  const [description, setDescription] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const handleInputChange = (e: { target: { id: any; value: any; }; }) => {
     const { id, value } = e.target;
     if (id === 'title') setTitle(value);
     if (id === 'data') setDate(value);
-    if (id === 'obs') setObservations(value);
+    if (id === 'obs') setDescription(value);
   };
 
   const handleSave = async () => {
+    const token = localStorage.getItem('token'); 
+  
+    if (!token) {
+      console.error('Token de autenticação não encontrado!');
+      return;
+    }
+  
     try {
       console.log('Salvando tarefa...');
-      
-      // Obter o token de autenticação do localStorage
-      const token = localStorage.getItem('token'); // Certifique-se de que o token foi salvo no localStorage no momento do login
-      
-      if (!token) {
-        throw new Error('Usuário não autenticado');
-      }
-
       await axios.post('http://localhost:3000/api/tasks', {
-        titleTask: title,
+        title: title,
         date,
-        observations,
+        description,
         status: 'Pendente'
       }, {
         headers: {
-          Authorization: `Bearer ${token}`  // Incluindo o token no cabeçalho da requisição
+          Authorization: `Bearer ${token}` 
         }
       });
-
-      router.push('/ListTasks');
+      setShowModal(true);
     } catch (error) {
       console.error('Erro ao salvar a tarefa:', error);
     }
   };
-  
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    router.push('/ListTasks');
+  };
+
   return (
     <div className={styles.cadastro}>
-        <h1>Nova tarefa</h1>
-        <div className={styles.dados}>
-            <form onSubmit={(e) => e.preventDefault()}>
-                <div>
-                  <label htmlFor="title">Título</label>
-                  <input 
-                    id="title"
-                    type="text" 
-                    placeholder="Ex.: Tarefa 1"
-                    value={title}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                <div>
-                    <label htmlFor="data">Data</label>
-                    <input 
-                      id="data"
-                      type="date" 
-                      value={date}
-                      onChange={handleInputChange}
-                      required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="obs">Observações</label>
-                    <textarea 
-                      id="obs"
-                      maxLength={150} 
-                      placeholder="Digite suas observações aqui..."
-                      value={observations}
-                      onChange={handleInputChange}
-                    />
-                </div>
-            </form>
-            <div className={styles.buttons}>
-              <Button onClick={() => router.push('/ListTasks')}>
-                <GiReturnArrow />
-                Voltar
-              </Button>
-              <Button onClick={handleSave}>
-                <IoIosSave />
-                Salvar
+      <h1>Nova tarefa</h1>
+      <div className={styles.dados}>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div>
+            <label htmlFor="title">Título</label>
+            <input 
+              id="title"
+              type="text" 
+              placeholder="Ex.: Tarefa 1"
+              value={title}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="data">Data</label>
+            <input 
+              id="data"
+              type="date" 
+              value={date}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="obs">Observações</label>
+            <textarea 
+              id="obs"
+              maxLength={150} 
+              placeholder="Digite suas observações aqui..."
+              value={description}
+              onChange={handleInputChange}
+            />
+          </div>
+        </form>
+        <div className={styles.buttons}>
+          <Button onClick={() => router.push('/ListTasks')}>
+            <GiReturnArrow />
+            Voltar
+          </Button>
+          <Button onClick={handleSave}>
+            <IoIosSave />
+            Salvar
+          </Button>
+        </div>
+      </div>
+
+      {showModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h2>Tarefa salva com sucesso!</h2>
+            <p>Sua tarefa foi salva e estará disponível na lista de tarefas.</p>
+            <div className={styles.modalButtons}>
+              <Button onClick={handleCloseModal}>
+                OK
               </Button>
             </div>
+          </div>
         </div>
+      )}
     </div>
   );
 }
