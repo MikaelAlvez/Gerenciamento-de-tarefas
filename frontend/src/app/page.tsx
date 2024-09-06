@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import styles from './page.module.css';
 import Button from '@/app/Components/Button';
 import Link from 'next/link';
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 
 export default function Page() {
@@ -85,11 +83,6 @@ export default function Page() {
           </div>
 
           <h4 className={styles.textConta}>Não tem uma conta? <Link className={styles.textBlue} href={"/RegisterUsers"}>Inscreva-se</Link></h4>
-          <h4 className={styles.textConta}>Logar com</h4>
-          <div className={styles.redes}>
-            <FcGoogle size={'3em'} />
-            <FaFacebook size={'3em'} style={{ color: '#3b5998' }} />
-          </div>
         </form>
       </div>
 
