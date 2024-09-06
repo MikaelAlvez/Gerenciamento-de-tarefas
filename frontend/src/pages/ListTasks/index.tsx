@@ -9,7 +9,7 @@ import { ImExit } from "react-icons/im";
 import { useRouter } from 'next/navigation';
 
 interface Task {
-  titleTask: string;
+  title: string;
   description: string;
   status: 'Concluído' | 'Pendente' | 'Em progresso';
   date: string;
@@ -28,13 +28,24 @@ export default function ListTasks() {
   };
 
   const fetchTasks = async () => {
+    const token = localStorage.getItem('token');
+  
+    if (!token) {
+      console.error('Token de autenticação não encontrado!');
+      return;
+    }
+  
     try {
-      const response = await axios.get<Task[]>('http://localhost:3000/api/tasks');
+      const response = await axios.get<Task[]>('http://localhost:3000/api/tasks', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       setTasks(response.data);
     } catch (error) {
       console.error('Erro ao buscar tarefas:', error);
     }
-  };
+  };  
 
   useEffect(() => {
     fetchTasks();
@@ -42,47 +53,41 @@ export default function ListTasks() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.layout}>
-        <div className={styles.logout}>
-          <Button onClick={handleHomeRedirect}>
-            Logout
-            <ImExit />
-          </Button>
-        </div>
-      </div>
-      <div className={styles.source}>
-        <Source />
-      </div>
-      <div className={styles.list}>
-        {tasks.length === 0 ? (
-          <div className={styles.noTasks}>
-            Nenhuma tarefa registrada!
-          </div>
-        ) : (
-          <>
-            <div className={styles.spans}>
-              <span>Título</span>
-              <span>Descrição</span>
-              <span>Status</span>
-              <span>Data agendada</span>
-              <span></span>
-            </div>
-            {tasks.map((task, index) => (
-              <TaskCards
-                key={index}
-                titleTask={task.titleTask}
-                description={task.description}
-                status={task.status}
-                date={task.date}
-              />
-            ))}
-          </>
-        )}
-      </div>
-      <Button onClick={handleNewTaskRedirect}>
-        <IoMdAddCircle />
-        Nova tarefa
+  <div className={styles.layout}>
+    <div className={styles.logout}>
+      <Button onClick={handleHomeRedirect}>
+        Logout
+        <ImExit />
       </Button>
     </div>
+    <Button onClick={handleNewTaskRedirect}>
+      <IoMdAddCircle />
+      Nova tarefa
+    </Button>
+  </div>
+  <div className={styles.source}>
+    <Source />
+  </div>
+  <div className={styles.list}>
+    {tasks.length === 0 ? (
+      <div className={styles.noTasks}>
+        Nenhuma tarefa registrada!
+      </div>
+    ) : (
+      <>
+        {tasks.map((task, index) => (
+          <TaskCards
+            key={index}
+            title={task.title}
+            description={task.description}
+            status={task.status}
+            date={task.date}
+          />
+        ))}
+      </>
+    )}
+  </div>
+</div>
+
   );
 }

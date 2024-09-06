@@ -3,13 +3,14 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import styles from './TaskCards.module.css';
 
 interface TaskCardsProps {
-  titleTask: string;
+  title: string;
   description: string;
   status: 'Concluído' | 'Pendente' | 'Em progresso';
   date: string;
 }
 
-export default function TaskCards({ titleTask, description, status, date }: TaskCardsProps) {
+export default function TaskCards({ title, description, status, date }: TaskCardsProps) {
+  console.log({ title, description, status, date });
 
   const getStatusClass = (status: string) => {
     switch (status) {
@@ -27,7 +28,7 @@ export default function TaskCards({ titleTask, description, status, date }: Task
   return (
     <div className={styles.listaContainer}>
       <div className={styles.info}>
-        <span className={styles.field}>{titleTask}</span>
+        <span className={styles.field}>{title}</span>
         <span className={styles.field}>{description}</span>
         <span className={`${styles.field} ${getStatusClass(status)}`}>{status}</span>
         <span className={styles.field}>{date}</span>
