@@ -1,159 +1,187 @@
 .listaContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%; 
-    height: 80px;
-    border-radius: 15px;
-    padding: 10px;
-    background-color: #F8F8F8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-    box-sizing: border-box;
-  }
-  
-  .info {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-  }
-  
-  .field {
-    flex: 0.2;
-    font-size: 1rem;
-    text-align: center;
-  }
-  
-  .statusConcluido {
-    background-color: #005F01;
-    color: white;
-    border-radius: 20px;
-    padding: 5px 10px;
-  }
-  
-  .statusPendente {
-    background-color: #DC143C;
-    color: white;
-    border-radius: 20px;
-    padding: 5px 10px;
-  }
-  
-  .statusProgresso {
-    background-color: #ffdd00;
-    color: black;
-    border-radius: 20px;
-    padding: 5px 10px;
-  }
-  
-  .actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .statusConcluido,
-  .statusProgresso,
-  .statusPendente {
-    display: inline-block;
-    border-radius: 20px;
-    padding: 5px 10px;
-    max-width: 150px;
-    min-width: 60px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .actionButtonEdit, .actionButtonDelete {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s;
-    font-size: 24px;
-  }
-  
-  .actionButtonEdit:hover, .actionButtonDelete:hover {
-    transform: scale(1.50);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%; 
+  height: 80px;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #F8F8F8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.info {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.field {
+  flex: 0.2;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.statusConcluido {
+  background-color: #005F01;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.statusPendente {
+  background-color: #DC143C;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.statusProgresso {
+  background-color: #ffdd00;
+  color: black;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.statusConcluido,
+.statusProgresso,
+.statusPendente {
+  display: inline-block;
+  border-radius: 20px;
+  padding: 5px 10px;
+  max-width: 150px;
+  min-width: 60px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actionButtonEdit,
+.actionButtonDelete {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  font-size: 24px;
+}
+
+.actionButtonEdit:hover,
+.actionButtonDelete:hover {
+  transform: scale(1.50);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalContent h2 {
+  margin-bottom: 20px;
+}
+
+.modalContent label {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.modalContent input,
+.modalContent select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.modalButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.modalContent button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1;
+  margin: 0 5px;
+}
+
+.modalContent button:first-of-type:hover {
+  background-color: #c82333;
+}
+
+.modalContent button:last-of-type {
+  background-color: #6c757d; 
+  color: white;
+}
+
+.modalContent button:last-of-type:hover {
+  background-color: black; 
+}
+
+@media (max-width: 768px) {
+  .listaContainer {
+      flex-direction: column;
+      height: auto;
+      padding: 10px;
+      gap: 10px;
   }
 
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  .info {
+      flex-direction: column;
+      text-align: center;
   }
-  
-  .modalContent {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    width: 80%;
-    max-width: 500px;
+
+  .field {
+      font-size: 0.875rem;
   }
-  
-  .modalContent h2 {
-    margin-top: 0;
+
+  .actions {
+      flex-direction: column;
+      gap: 5px;
   }
-  
-  .modalContent label {
-    display: block;
-    margin-bottom: 10px;
+
+  .actionButtonEdit,
+  .actionButtonDelete {
+      width: 100%;
+      font-size: 0.75rem;
   }
-  
-  .modalContent input,
-  .modalContent select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+}
+
+@media (max-width: 480px) {
+  .actionButtonEdit,
+  .actionButtonDelete {
+      font-size: 0.625rem;
   }
-  
-  .modalContent button {
-    margin-right: 10px;
-  }
-  
-  @media (max-width: 768px) {
-    .listaContainer {
-        flex-direction: column;
-        height: auto;
-        padding: 10px;
-        gap: 10px;
-    }
-  
-    .info {
-        flex-direction: column;
-        text-align: center;
-    }
-  
-    .field {
-        font-size: 0.875rem;
-    }
-  
-    .actions {
-        flex-direction: column;
-        gap: 5px;
-    }
-  
-    .actionButtonConfirmar,
-    .actionButtonCancelar,
-    .actionButtonReagendar {
-        width: 100%;
-        font-size: 0.75rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .actionButtonConfirmar,
-    .actionButtonCancelar,
-    .actionButtonReagendar {
-        font-size: 0.625rem;
-    }
-  }
+}

@@ -189,6 +189,38 @@
   justify-content: center;
 }
 
+.forgotPasswordContainer {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.forgotPasswordInput {
+  width: 100%;
+  max-width: 300px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.forgotPasswordButton {
+  height: 45px;
+  font-size: 16px;
+  background-color: #191970;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.forgotPasswordButton:hover {
+  background-color: #0056b3;
+}
+
+
 @media (max-width: 768px) {
   .loginContainer {
     max-width: 80%;

@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
 import { MdEdit, MdDelete } from "react-icons/md";
 import styles from './TaskCards.module.css';
+import Button from '../Button';
 
-interface TaskCardsProps {
+interface Task {
   title: string;
   description: string;
   status: 'Concluído' | 'Pendente' | 'Em progresso';
   date: string;
 }
 
-export default function TaskCards({ title, description, status, date }: TaskCardsProps) {
+interface TaskCardsProps {
+  id: number;
+  title: string;
+  description: string;
+  status: 'Concluído' | 'Pendente' | 'Em progresso';
+  date: string;
+  onDelete: (id: number) => void;
+  onEdit: (id: number, updatedTask: Task) => void;
+}
+
+export default function TaskCards({ id, title, description, status, date, onDelete, onEdit }: TaskCardsProps) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [editedTask, setEditedTask] = useState({
@@ -57,10 +68,12 @@ export default function TaskCards({ title, description, status, date }: TaskCard
   };
 
   const handleSave = () => {
+    onEdit(id, editedTask);
     closeEditModal();
   };
 
   const handleDelete = () => {
+    onDelete(id);
     closeDeleteModal();
   };
 
@@ -120,8 +133,10 @@ export default function TaskCards({ title, description, status, date }: TaskCard
                 onChange={handleChange}
               />
             </label>
-            <button onClick={handleSave}>Salvar</button>
-            <button onClick={closeEditModal}>Cancelar</button>
+            <div className={styles.modalButtonContainer}>
+              <button onClick={handleSave}>Salvar</button>
+              <button onClick={closeEditModal}>Cancelar</button>
+            </div>
           </div>
         </div>
       )}
@@ -131,8 +146,10 @@ export default function TaskCards({ title, description, status, date }: TaskCard
           <div className={styles.modalContent}>
             <h2>Confirmar Exclusão</h2>
             <p>Você realmente deseja remover a tarefa &quot;{title}&quot;?</p>
-            <button onClick={handleDelete}>Excluir</button>
-            <button onClick={closeDeleteModal}>Cancelar</button>
+            <div className={styles.modalButtonContainer}>
+              <Button onClick={handleDelete}>Excluir</Button>
+              <Button onClick={closeDeleteModal}>Cancelar</Button>
+            </div>
           </div>
         </div>
       )}

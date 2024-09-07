@@ -9,6 +9,7 @@ import { ImExit } from "react-icons/im";
 import { useRouter } from 'next/navigation';
 
 interface Task {
+  id: number;
   title: string;
   description: string;
   status: 'Concluído' | 'Pendente' | 'Em progresso';
@@ -73,11 +74,31 @@ export default function ListTasks() {
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     const lowercasedQuery = query.toLowerCase();
-    const filtered = tasks.filter(task => 
-      task.title.toLowerCase().includes(lowercasedQuery) || 
+    const filtered = tasks.filter(task =>
+      task.title.toLowerCase().includes(lowercasedQuery) ||
       task.status.toLowerCase().includes(lowercasedQuery)
     );
     setFilteredTasks(filtered);
+  };
+
+  const handleDelete = async (id: number) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.error('Token de autenticação não encontrado!');
+      return;
+    }
+
+    try {
+      await axios.delete(`http://localhost:3000/api/tasks/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
+      setFilteredTasks(prevTasks => prevTasks.filter(task => task.id !== id));
+    } catch (error) {
+      console.error('Erro ao excluir tarefa:', error);
+    }
   };
 
   useEffect(() => {
@@ -119,20 +140,23 @@ export default function ListTasks() {
           </div>
         ) : (
           <>
-            {filteredTasks.map((task, index) => (
+            {filteredTasks.map(task => (
               <TaskCards
-                key={index}
+                key={task.id}
+                id={task.id}
                 title={task.title}
                 description={task.description}
                 status={task.status}
                 date={task.date}
+                onDelete={handleDelete}
+                onEdit={() => {}}
               />
             ))}
           </>
         )}
         <Button onClick={handleNewTaskRedirect}>
           <IoMdAddCircle />
-            Nova tarefa
+          Nova tarefa
         </Button>
       </div>
     </div>

@@ -65,9 +65,9 @@ export default function Page() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <div className={styles.check}>
+          {/*<div className={styles.check}>
             <label className={styles.textBlue}>Esqueceu a senha?</label>
-          </div>
+          </div>*/}
 
           <div className={styles.button}>
             <Button>
