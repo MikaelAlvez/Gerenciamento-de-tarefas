@@ -4,6 +4,7 @@ import styles from './TaskCards.module.css';
 import Button from '../Button';
 
 interface Task {
+  id: number;
   title: string;
   description: string;
   status: 'Concluído' | 'Pendente' | 'Em progresso';
@@ -68,7 +69,7 @@ export default function TaskCards({ id, title, description, status, date, onDele
   };
 
   const handleSave = () => {
-    onEdit(id, editedTask);
+    onEdit(id, { ...editedTask, id });
     closeEditModal();
   };
 
@@ -89,31 +90,30 @@ export default function TaskCards({ id, title, description, status, date, onDele
         <button className={styles.actionButtonEdit} onClick={openEditModal}><MdEdit /></button>
         <button className={styles.actionButtonDelete} onClick={openDeleteModal}><MdDelete /></button>
       </div>
-      
+
       {isEditModalOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h2>Editar Tarefa</h2>
-            <label>
-              Título:
+        <>
+          <div className={styles.overlay} onClick={closeEditModal} />
+          <div className={styles.modal}>
+            <h2>Editar tarefa</h2>
+            <div className={styles.modalContent}>
+              <label htmlFor="title">Título:</label>
               <input
                 type="text"
                 name="title"
                 value={editedTask.title}
                 onChange={handleChange}
               />
-            </label>
-            <label>
-              Descrição:
+
+              <label htmlFor="description">Descrição:</label>
               <input
                 type="text"
                 name="description"
                 value={editedTask.description}
                 onChange={handleChange}
               />
-            </label>
-            <label>
-              Status:
+
+              <label htmlFor="status">Status:</label>
               <select
                 name="status"
                 value={editedTask.status}
@@ -123,35 +123,37 @@ export default function TaskCards({ id, title, description, status, date, onDele
                 <option value="Pendente">Pendente</option>
                 <option value="Em progresso">Em progresso</option>
               </select>
-            </label>
-            <label>
-              Data:
+
+              <label htmlFor="date">Data:</label>
               <input
-                type="text"
+                type="date"
                 name="date"
                 value={editedTask.date}
                 onChange={handleChange}
               />
-            </label>
-            <div className={styles.modalButtonContainer}>
-              <button onClick={handleSave}>Salvar</button>
-              <button onClick={closeEditModal}>Cancelar</button>
+            </div>
+            <div className={styles.modalActions}>
+              <Button onClick={handleSave}>Salvar</Button>
+              <Button onClick={closeEditModal}>Cancelar</Button>
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {isDeleteModalOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h2>Confirmar Exclusão</h2>
-            <p>Você realmente deseja remover a tarefa &quot;{title}&quot;?</p>
-            <div className={styles.modalButtonContainer}>
-              <Button onClick={handleDelete}>Excluir</Button>
-              <Button onClick={closeDeleteModal}>Cancelar</Button>
+        <>
+          <div className={styles.overlay} onClick={closeDeleteModal} />
+          <div className={styles.modal}>
+            <div className={styles.modalContent}>
+              <h2>Excluir tarefa</h2>
+              <p>Tem certeza que deseja excluir esta tarefa?</p>
+              <div className={styles.modalActions}>
+                <Button onClick={handleDelete}>Excluir</Button>
+                <Button onClick={closeDeleteModal}>Cancelar</Button>
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

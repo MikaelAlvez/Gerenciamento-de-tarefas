@@ -84,6 +84,13 @@
   background: #005bb5;
 }
 
+.successModal {
+  background: white;
+  color: green;
+  padding: 20px;
+  border: none;
+  border-radius: 8px;
+}
 
 @media (max-width: 810px) {
   .logout {
