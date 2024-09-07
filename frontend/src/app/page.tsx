@@ -66,13 +66,6 @@ export default function Page() {
             required
           />
           <div className={styles.check}>
-            <div className={styles.checkbox}>
-              <input
-                type="checkbox"
-                placeholder='Lembre-se de mim'
-              />
-              <label className={styles.textBlue}>Lembre-se de mim</label>
-            </div>
             <label className={styles.textBlue}>Esqueceu a senha?</label>
           </div>
 

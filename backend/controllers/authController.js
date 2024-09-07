@@ -4,23 +4,23 @@ const User = require('../models/User');
 require('dotenv').config();
 
 exports.register = async (req, res) => {
-  const { nome, email, password } = req.body;
-
   try {
-    // Verifique se o usuário já existe
-    const existingUser = await User.findOne({ email });
+    const { email, password } = req.body;
 
-    if (existingUser) {
-      return res.status(409).json({ message: 'Usuário já existe.' });
+    // Validação
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Please provide email and password' });
     }
 
-    // Crie um novo usuário
-    const newUser = new User({ nome, email, password });
-    await newUser.save();
+    // Hash da senha
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    res.status(201).json({ message: 'Usuário cadastrado com sucesso!' });
-  } catch (error) {
-    res.status(500).json({ message: 'Erro ao registrar o usuário. Tente novamente.' });
+    // Criação do usuário
+    const user = await User.create({ email, password: hashedPassword });
+
+    res.status(201).json({ message: 'User registered successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 

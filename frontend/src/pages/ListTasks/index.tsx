@@ -128,12 +128,12 @@ export default function ListTasks() {
                 date={task.date}
               />
             ))}
-            <Button onClick={handleNewTaskRedirect}>
-              <IoMdAddCircle />
-              Nova tarefa
-            </Button>
           </>
         )}
+        <Button onClick={handleNewTaskRedirect}>
+          <IoMdAddCircle />
+            Nova tarefa
+        </Button>
       </div>
     </div>
   );
